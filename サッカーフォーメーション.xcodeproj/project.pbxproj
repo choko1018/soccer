@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		AADB51B72EA0F22800A19B6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AADB51A12EA0F22100A19B6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AADB51A82EA0F22100A19B6E;
+			remoteInfo = "サッカーフォーメーション";
+		};
+		AADB51C12EA0F22800A19B6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AADB51A12EA0F22100A19B6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AADB51A82EA0F22100A19B6E;
+			remoteInfo = "サッカーフォーメーション";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AADB51A92EA0F22100A19B6E /* サッカーフォーメーション.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "サッカーフォーメーション.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AADB51B62EA0F22800A19B6E /* サッカーフォーメーションTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "サッカーフォーメーションTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AADB51C02EA0F22800A19B6E /* サッカーフォーメーションUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "サッカーフォーメーションUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AADB51AB2EA0F22100A19B6E /* サッカーフォーメーション */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "サッカーフォーメーション";
+			sourceTree = "<group>";
+		};
+		AADB51B92EA0F22800A19B6E /* サッカーフォーメーションTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "サッカーフォーメーションTests";
+			sourceTree = "<group>";
+		};
+		AADB51C32EA0F22800A19B6E /* サッカーフォーメーションUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "サッカーフォーメーションUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AADB51A62EA0F22100A19B6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51B32EA0F22800A19B6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51BD2EA0F22800A19B6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AADB51A02EA0F22100A19B6E = {
+			isa = PBXGroup;
+			children = (
+				AADB51AB2EA0F22100A19B6E /* サッカーフォーメーション */,
+				AADB51B92EA0F22800A19B6E /* サッカーフォーメーションTests */,
+				AADB51C32EA0F22800A19B6E /* サッカーフォーメーションUITests */,
+				AADB51AA2EA0F22100A19B6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AADB51AA2EA0F22100A19B6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AADB51A92EA0F22100A19B6E /* サッカーフォーメーション.app */,
+				AADB51B62EA0F22800A19B6E /* サッカーフォーメーションTests.xctest */,
+				AADB51C02EA0F22800A19B6E /* サッカーフォーメーションUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AADB51A82EA0F22100A19B6E /* サッカーフォーメーション */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AADB51CA2EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーション" */;
+			buildPhases = (
+				AADB51A52EA0F22100A19B6E /* Sources */,
+				AADB51A62EA0F22100A19B6E /* Frameworks */,
+				AADB51A72EA0F22100A19B6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AADB51AB2EA0F22100A19B6E /* サッカーフォーメーション */,
+			);
+			name = "サッカーフォーメーション";
+			packageProductDependencies = (
+			);
+			productName = "サッカーフォーメーション";
+			productReference = AADB51A92EA0F22100A19B6E /* サッカーフォーメーション.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AADB51B52EA0F22800A19B6E /* サッカーフォーメーションTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AADB51CD2EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーションTests" */;
+			buildPhases = (
+				AADB51B22EA0F22800A19B6E /* Sources */,
+				AADB51B32EA0F22800A19B6E /* Frameworks */,
+				AADB51B42EA0F22800A19B6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AADB51B82EA0F22800A19B6E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AADB51B92EA0F22800A19B6E /* サッカーフォーメーションTests */,
+			);
+			name = "サッカーフォーメーションTests";
+			packageProductDependencies = (
+			);
+			productName = "サッカーフォーメーションTests";
+			productReference = AADB51B62EA0F22800A19B6E /* サッカーフォーメーションTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AADB51BF2EA0F22800A19B6E /* サッカーフォーメーションUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AADB51D02EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーションUITests" */;
+			buildPhases = (
+				AADB51BC2EA0F22800A19B6E /* Sources */,
+				AADB51BD2EA0F22800A19B6E /* Frameworks */,
+				AADB51BE2EA0F22800A19B6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AADB51C22EA0F22800A19B6E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AADB51C32EA0F22800A19B6E /* サッカーフォーメーションUITests */,
+			);
+			name = "サッカーフォーメーションUITests";
+			packageProductDependencies = (
+			);
+			productName = "サッカーフォーメーションUITests";
+			productReference = AADB51C02EA0F22800A19B6E /* サッカーフォーメーションUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AADB51A12EA0F22100A19B6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					AADB51A82EA0F22100A19B6E = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					AADB51B52EA0F22800A19B6E = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = AADB51A82EA0F22100A19B6E;
+					};
+					AADB51BF2EA0F22800A19B6E = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = AADB51A82EA0F22100A19B6E;
+					};
+				};
+			};
+			buildConfigurationList = AADB51A42EA0F22100A19B6E /* Build configuration list for PBXProject "サッカーフォーメーション" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AADB51A02EA0F22100A19B6E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = AADB51AA2EA0F22100A19B6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AADB51A82EA0F22100A19B6E /* サッカーフォーメーション */,
+				AADB51B52EA0F22800A19B6E /* サッカーフォーメーションTests */,
+				AADB51BF2EA0F22800A19B6E /* サッカーフォーメーションUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AADB51A72EA0F22100A19B6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51B42EA0F22800A19B6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51BE2EA0F22800A19B6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AADB51A52EA0F22100A19B6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51B22EA0F22800A19B6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AADB51BC2EA0F22800A19B6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AADB51B82EA0F22800A19B6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AADB51A82EA0F22100A19B6E /* サッカーフォーメーション */;
+			targetProxy = AADB51B72EA0F22800A19B6E /* PBXContainerItemProxy */;
+		};
+		AADB51C22EA0F22800A19B6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AADB51A82EA0F22100A19B6E /* サッカーフォーメーション */;
+			targetProxy = AADB51C12EA0F22800A19B6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AADB51C82EA0F22800A19B6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AADB51C92EA0F22800A19B6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AADB51CB2EA0F22800A19B6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C3BADPCHJ5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choko1018.football;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AADB51CC2EA0F22800A19B6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C3BADPCHJ5;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.choko1018.football;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AADB51CE2EA0F22800A19B6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choko1018.------------Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/サッカーフォーメーション.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/サッカーフォーメーション";
+			};
+			name = Debug;
+		};
+		AADB51CF2EA0F22800A19B6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choko1018.------------Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/サッカーフォーメーション.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/サッカーフォーメーション";
+			};
+			name = Release;
+		};
+		AADB51D12EA0F22800A19B6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choko1018.------------UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "サッカーフォーメーション";
+			};
+			name = Debug;
+		};
+		AADB51D22EA0F22800A19B6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MPB24AZ7J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choko1018.------------UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "サッカーフォーメーション";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AADB51A42EA0F22100A19B6E /* Build configuration list for PBXProject "サッカーフォーメーション" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADB51C82EA0F22800A19B6E /* Debug */,
+				AADB51C92EA0F22800A19B6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AADB51CA2EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーション" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADB51CB2EA0F22800A19B6E /* Debug */,
+				AADB51CC2EA0F22800A19B6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AADB51CD2EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーションTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADB51CE2EA0F22800A19B6E /* Debug */,
+				AADB51CF2EA0F22800A19B6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AADB51D02EA0F22800A19B6E /* Build configuration list for PBXNativeTarget "サッカーフォーメーションUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AADB51D12EA0F22800A19B6E /* Debug */,
+				AADB51D22EA0F22800A19B6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AADB51A12EA0F22100A19B6E /* Project object */;
+}
