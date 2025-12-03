@@ -48,6 +48,8 @@ struct DraggableItem: Identifiable, Codable, Equatable {
 struct SubView: View {
     // フォーメーションごとの保存ファイル名を受け取る
     var filename: String = "items.json"
+    // ナビゲーションバーに表示するタイトル（Formation.name を渡します）
+    var title: String? = nil
 
     @State private var items: [DraggableItem] = []
     @Environment(\.dismiss) var dismiss
@@ -74,7 +76,8 @@ struct SubView: View {
                 }
             }
         }
-        .navigationBarTitle(Text("フォーメーション一覧"), displayMode: .inline)
+        // title が渡されていればそれを表示、無ければ既存のデフォルトを表示
+        .navigationBarTitle(Text(title ?? "フォーメーション"), displayMode: .inline)
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
@@ -121,5 +124,5 @@ struct SubView: View {
 }
 
 #Preview {
-    SubView(filename: "preview-formation.json")
+    SubView(filename: "preview-formation.json", title: "プレビュー")
 }
