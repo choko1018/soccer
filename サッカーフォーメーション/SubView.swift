@@ -1,5 +1,6 @@
 import SwiftUI
 import Photos
+import LinkPresentation
 
 struct DraggableItem: Identifiable, Codable, Equatable {
     let id: UUID
@@ -97,6 +98,10 @@ struct SubView: View {
     @StateObject private var snapshotter = ViewSnapshotter()
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    // 共有フロー用
+    @State private var showSharePrompt: Bool = false
+    @State private var showActivitySheet: Bool = false
+    @State private var shareImage: UIImage? = nil
     // フォーメーションプリセット
     private let formationPresets: [String] = ["初期配置", "4-4-2", "4-3-3", "3-5-2", "test"]
     @State private var selectedPreset: String = "初期配置"
@@ -123,7 +128,8 @@ struct SubView: View {
                     }
                     .padding(8)
                     .background(Color(.systemGray6))
-                    .cornerRadius(8)
+                    .cornerRadius(8
+                    )
                 }
 
                 Spacer()
@@ -164,6 +170,20 @@ struct SubView: View {
                         return
                     }
 
+                    // 保存後に共有するかどうかを確認するため shareImage に保持
+                    let handleSavedImage: (Bool, Error?) -> Void = { success, error in
+                        DispatchQueue.main.async {
+                            if success {
+                                // 保存成功: 共有プロンプトを表示
+                                shareImage = image
+                                showSharePrompt = true
+                            } else {
+                                alertMessage = "保存に失敗しました: \(error?.localizedDescription ?? "不明なエラー")"
+                                showAlert = true
+                            }
+                        }
+                    }
+
                     // 写真ライブラリ追加の権限を確認して保存
                     if #available(iOS 14, *) {
                         PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
@@ -172,14 +192,7 @@ struct SubView: View {
                                 PHPhotoLibrary.shared().performChanges({
                                     PHAssetChangeRequest.creationRequestForAsset(from: image)
                                 }) { success, error in
-                                    DispatchQueue.main.async {
-                                        if success {
-                                            alertMessage = "写真に保存しました。"
-                                        } else {
-                                            alertMessage = "保存に失敗しました: \(error?.localizedDescription ?? "不明なエラー")"
-                                        }
-                                        showAlert = true
-                                    }
+                                    handleSavedImage(success, error)
                                 }
                             default:
                                 DispatchQueue.main.async {
@@ -189,20 +202,12 @@ struct SubView: View {
                             }
                         }
                     } else {
-                        // iOS 13 以前
                         PHPhotoLibrary.requestAuthorization { status in
                             if status == .authorized {
                                 PHPhotoLibrary.shared().performChanges({
                                     PHAssetChangeRequest.creationRequestForAsset(from: image)
                                 }) { success, error in
-                                    DispatchQueue.main.async {
-                                        if success {
-                                            alertMessage = "写真に保存しました。"
-                                        } else {
-                                            alertMessage = "保存に失敗しました: \(error?.localizedDescription ?? "不明なエラー")"
-                                        }
-                                        showAlert = true
-                                    }
+                                    handleSavedImage(success, error)
                                 }
                             } else {
                                 DispatchQueue.main.async {
@@ -220,6 +225,28 @@ struct SubView: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("通知"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
+        // 保存成功後の共有確認ダイアログ
+        .alert("保存しました", isPresented: $showSharePrompt) {
+            Button("はい") {
+                // 共有シートを表示
+                showActivitySheet = true
+            }
+            Button("いいえ", role: .cancel) {
+                // 何もしない
+            }
+        } message: {
+            Text("SNSでシェアしますか？")
+        }
+        // UIActivityViewController を SwiftUI で表示
+        .sheet(isPresented: $showActivitySheet, content: {
+            if let image = shareImage {
+                ActivityView(activityItems: [ImageActivityItemSource(image: image)], isPresented: $showActivitySheet)
+                    .onDisappear {
+                        // 共有シートが閉じたら shareImage を解放
+                        shareImage = nil
+                    }
+            }
+        })
          // 編集用シート（下から出る見た目は presentationDetents を使えます）
          .sheet(isPresented: $showEditor) {
              if let i = editingIndex {
@@ -333,9 +360,9 @@ extension SubView {
             // 初期配置（既存のデフォルト）
             items = [
                DraggableItem(position: CGSize(width: 0, height: 250) ),
-               DraggableItem(position: CGSize(width: 50, height: 150) ),
-               DraggableItem(position: CGSize(width: -50, height: 150) ),
-               DraggableItem(position: CGSize(width: 125, height: 150) ),
+               DraggableItem(position: CGSize(width: 50, height: 50) ),
+               DraggableItem(position: CGSize(width: -50, height: 50) ),
+               DraggableItem(position: CGSize(width: 125, height: 50) ),
                DraggableItem(position: CGSize(width: -125, height: 150) ),
                DraggableItem(position: CGSize(width: 125, height: 50) ),
                DraggableItem(position: CGSize(width: -50, height: 50) ),
@@ -424,5 +451,77 @@ extension SubView {
             }
         }
         return true
+    }
+}
+
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    @Binding var isPresented: Bool
+    let applicationActivities: [UIActivity]? = nil
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(isPresented: $isPresented)
+    }
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        // completion handler で SwiftUI のバインディングを閉じる
+        controller.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+            DispatchQueue.main.async {
+                context.coordinator.isPresented.wrappedValue = false
+            }
+        }
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+
+    class Coordinator: NSObject {
+        var isPresented: Binding<Bool>
+        init(isPresented: Binding<Bool>) {
+            self.isPresented = isPresented
+        }
+    }
+}
+
+final class ImageActivityItemSource: NSObject, UIActivityItemSource {
+    private let image: UIImage
+    init(image: UIImage) { self.image = image }
+
+    // プレースホルダとして画像を返す
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return image
+    }
+
+    // 実際に渡すアイテム（画像）
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return image
+    }
+
+    // メール等で使われる件名
+    func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return "フォーメーション画像"
+    }
+
+    // サムネイルを共有シート内で表示できるように返す（小さいプレビュー）
+    func activityViewController(_ activityViewController: UIActivityViewController, thumbnailImageForActivityType activityType: UIActivity.ActivityType?, suggestedSize size: CGSize) -> UIImage? {
+        // suggestedSize に合わせて画像を縮小して返す
+        let targetSize = CGSize(width: max(1, size.width), height: max(1, size.height))
+        let rendererFormat = UIGraphicsImageRendererFormat.default()
+        rendererFormat.scale = UIScreen.main.scale
+        let renderer = UIGraphicsImageRenderer(size: targetSize, format: rendererFormat)
+        let scaled = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+        return scaled
+    }
+
+    // iOS 13+ のリッチプレビュー用に LPLinkMetadata を返す
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+        metadata.title = "フォーメーション画像"
+        // NSItemProvider を使って画像を渡す
+        metadata.imageProvider = NSItemProvider(object: image)
+        return metadata
     }
 }
