@@ -1,4 +1,5 @@
 import SwiftUI
+import Photos
 
 struct DraggableItem: Identifiable, Codable, Equatable {
     let id: UUID
@@ -45,6 +46,40 @@ struct DraggableItem: Identifiable, Codable, Equatable {
     }
 }
 
+// MARK: - View snapshot helper
+final class ViewSnapshotter: ObservableObject {
+    weak var hostingView: UIView?
+
+    func snapshot() -> UIImage? {
+        guard let view = hostingView else { return nil }
+        // レンダラを使用して view を画像化
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = UIScreen.main.scale
+        let renderer = UIGraphicsImageRenderer(bounds: view.bounds, format: format)
+        return renderer.image { ctx in
+            // レイヤー描画ではなく drawHierarchy を使って正しく描画
+            view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        }
+    }
+}
+
+struct SnapshotHosting<Content: View>: UIViewControllerRepresentable {
+    let content: Content
+    @ObservedObject var snapshotter: ViewSnapshotter
+
+    func makeUIViewController(context: Context) -> UIHostingController<Content> {
+        let vc = UIHostingController(rootView: content)
+        vc.view.backgroundColor = .clear
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: UIHostingController<Content>, context: Context) {
+        uiViewController.rootView = content
+        // 参照を保持（capture 時に使用）
+        snapshotter.hostingView = uiViewController.view
+    }
+}
+
 struct SubView: View {
     // フォーメーションごとの保存ファイル名を受け取る
     var filename: String = "items.json"
@@ -58,41 +93,107 @@ struct SubView: View {
     @State private var editingIndex: Int? = nil
     @State private var showEditor: Bool = false
 
+    // スクリーンショット用
+    @StateObject private var snapshotter = ViewSnapshotter()
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+
     var body: some View {
-        ZStack {
-            Image("ピッチ")
-             .resizable()
-             .frame(width: 450, height: 650, alignment: .bottom)
-            ForEach(items.indices, id: \.self) { index in
-                SoccerPleyer(
-                    position: $items[index].position,
-                    name: $items[index].name,
-                    imageData: $items[index].imageData
-                )
-                .onTapGesture {
-                    // タップで編集モーダルを表示
-                    editingIndex = index
-                    showEditor = true
+        // SnapshotHosting を使ってピッチ部分の UIView を取得できるようにする
+        SnapshotHosting(content:
+            ZStack {
+                Image("ピッチ")
+                    .resizable()
+                    .frame(width: 450, height: 650, alignment: .bottom)
+                ForEach(items.indices, id: \.self) { index in
+                    SoccerPleyer(
+                        position: $items[index].position,
+                        name: $items[index].name,
+                        imageData: $items[index].imageData
+                    )
+                    .onTapGesture {
+                        // タップで編集モーダルを表示
+                        editingIndex = index
+                        showEditor = true
+                    }
                 }
             }
-        }
-        // title が渡されていればそれを表示、無ければ既存のデフォルトを表示
-        .navigationBarTitle(Text(title ?? "フォーメーション"), displayMode: .inline)
-        .toolbar{
-            ToolbarItem(placement: .navigationBarTrailing) {
+            , snapshotter: snapshotter)
+         // title が渡されていればそれを表示、無ければ既存のデフォルトを表示
+         .navigationBarTitle(Text(title ?? "フォーメーション"), displayMode: .inline)
+         .toolbar{
+             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
+                    // キャプチャして写真ライブラリへ保存
+                    guard let image = snapshotter.snapshot() else {
+                        alertMessage = "画像を取得できませんでした"
+                        showAlert = true
+                        return
+                    }
+
+                    // 写真ライブラリ追加の権限を確認して保存
+                    if #available(iOS 14, *) {
+                        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+                            switch status {
+                            case .authorized, .limited:
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                                }) { success, error in
+                                    DispatchQueue.main.async {
+                                        if success {
+                                            alertMessage = "写真に保存しました。"
+                                        } else {
+                                            alertMessage = "保存に失敗しました: \(error?.localizedDescription ?? "不明なエラー")"
+                                        }
+                                        showAlert = true
+                                    }
+                                }
+                            default:
+                                DispatchQueue.main.async {
+                                    alertMessage = "写真への保存権限が必要です。設定を確認してください。"
+                                    showAlert = true
+                                }
+                            }
+                        }
+                    } else {
+                        // iOS 13 以前
+                        PHPhotoLibrary.requestAuthorization { status in
+                            if status == .authorized {
+                                PHPhotoLibrary.shared().performChanges({
+                                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                                }) { success, error in
+                                    DispatchQueue.main.async {
+                                        if success {
+                                            alertMessage = "写真に保存しました。"
+                                        } else {
+                                            alertMessage = "保存に失敗しました: \(error?.localizedDescription ?? "不明なエラー")"
+                                        }
+                                        showAlert = true
+                                    }
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    alertMessage = "写真への保存権限が必要です。設定を確認してください。"
+                                    showAlert = true
+                                }
+                            }
+                        }
+                    }
                 }){
                     Image(systemName: "camera")
                 }
-            }
+             }
+         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("通知"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
-        // 編集用シート（下から出る見た目は presentationDetents を使えます）
-        .sheet(isPresented: $showEditor) {
-            if let i = editingIndex {
-                PlayerEditor(item: $items[i], isPresented: $showEditor)
-                    .presentationDetents([.medium, .large])
-            }
-        }
+         // 編集用シート（下から出る見た目は presentationDetents を使えます）
+         .sheet(isPresented: $showEditor) {
+             if let i = editingIndex {
+                 PlayerEditor(item: $items[i], isPresented: $showEditor)
+                     .presentationDetents([.medium, .large])
+             }
+         }
         .onAppear {
             // 保存されている items を読み込む（ファイル名指定）
             if let saved = Persistence.loadItems(filename: filename) {
@@ -101,14 +202,14 @@ struct SubView: View {
                 // 保存がない場合は既存のデフォルト配置を初期化
                 items = [
                    DraggableItem(position: CGSize(width: 0, height: 250) ),
-                   DraggableItem(position: CGSize(width: 50, height: 150) ),
-                   DraggableItem(position: CGSize(width: -50, height: 150) ),
-                   DraggableItem(position: CGSize(width: 125, height: 150) ),
-                   DraggableItem(position: CGSize(width: -125, height: 150) ),
-                   DraggableItem(position: CGSize(width: 125, height: 50) ),
-                   DraggableItem(position: CGSize(width: -50, height: 50) ),
-                   DraggableItem(position: CGSize(width: -125, height: 50) ),
                    DraggableItem(position: CGSize(width: 50, height: 50) ),
+                   DraggableItem(position: CGSize(width: -50, height: 50) ),
+                   DraggableItem(position: CGSize(width: 125, height: 50) ),
+                   DraggableItem(position: CGSize(width: -125, height: 50) ),
+                   DraggableItem(position: CGSize(width: 125, height: -150) ),
+                   DraggableItem(position: CGSize(width: -50, height: -150) ),
+                   DraggableItem(position: CGSize(width: -125, height: -150) ),
+                   DraggableItem(position: CGSize(width: 50, height: -150) ),
                    DraggableItem(position: CGSize(width: 50, height: -50) ),
                    DraggableItem(position: CGSize(width: -50, height: -50) )
                 ]
@@ -124,5 +225,5 @@ struct SubView: View {
 }
 
 #Preview {
-    SubView(filename: "preview-formation.json", title: "プレビュー")
-}
+     SubView(filename: "preview-formation.json", title: "プレビュー")
+ }
